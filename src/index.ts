@@ -1,10 +1,22 @@
 import express, { Request, Response } from "express";
 import cors from "cors";
+import mongoose from "mongoose";
 
+import config from "./config";
 import controller from "./controllers";
 
 const app = express();
 const PORT = 3000;
+
+// const mongo = process.env.MONGO_URL;
+mongoose
+  .connect(config.mongo.url, config.mongo.options)
+  .then(() => {
+    console.log("Connected to mongoDB!");
+  })
+  .catch((err) => {
+    console.error("MongoDB connection error.", err);
+  });
 
 app.use(express.json());
 app.use(cors());
