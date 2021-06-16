@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import IUrl from "../interfaces/urls";
 import Url from "../models/urls";
 
-export async function getUrl(): Promise<any> {
+export async function getUrl(): Promise<IUrl[]> {
   try {
     const result = await Url.find().exec();
     return result;
@@ -27,13 +27,28 @@ export async function getLongUrl(
 }
 
 export async function getHashedUrl(
-  url: string
+  hash: string
 ): Promise<IUrl | null> {
   try {
     const result = await Url.findOne({
-      short: url
+      hash: hash
     }).exec();
     return result;
+  } catch (err) {
+    console.error("Error getting url", err);
+    return err;
+  }
+}
+
+export async function retrieveUrlFromHash(
+  hash: string
+): Promise<string | undefined> {
+  try {
+    const result = await Url.findOne({
+      hash: hash
+    }).exec();
+    if (result) return result.long;
+    else return undefined;
   } catch (err) {
     console.error("Error getting url", err);
     return err;
@@ -43,12 +58,14 @@ export async function getHashedUrl(
 export async function insertUrlEntry(
   hash: string,
   long: string,
-): Promise<any> {
+  short: string,
+): Promise<IUrl> {
   try {
     const url = new Url({
       _id: new mongoose.Types.ObjectId(),
-      short: hash,
+      hash: hash,
       long: long,
+      short: short,
     })
     return url.save();
   } catch (err) {

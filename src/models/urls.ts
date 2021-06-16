@@ -5,6 +5,7 @@ const UrlSchema: Schema = new Schema(
   {
     short: { type: String, required: true },
     long: { type: String, required: true },
+    hash: { type: String, required: true },
   },
   {
     timestamps: true
