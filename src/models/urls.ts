@@ -11,8 +11,4 @@ const UrlSchema: Schema = new Schema(
   }
 );
 
-UrlSchema.post<IUrl>("save", function () {
-  this.long = "new stuff";
-})
-
 export default mongoose.model<IUrl>("Url", UrlSchema);
