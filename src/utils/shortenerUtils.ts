@@ -43,7 +43,7 @@ export async function shortUrl(req: Request, res: Response, next: NextFunction) 
     if (checkHttp(url) === true) {
 
       if (req.body.readableUrl) {
-        const checkerReadableUrl = await getLongUrl(url);
+        const checkerReadableUrl = await getLongUrl(url, true);
         if (checkerReadableUrl) {
           req.payload = {
             shortenedUrl: checkerReadableUrl.short,
@@ -59,7 +59,7 @@ export async function shortUrl(req: Request, res: Response, next: NextFunction) 
           if (!checkRandomName) {
             loop = false;
             const newUrl = config.domain + randomName;
-            await insertUrlEntry(randomName, url, newUrl);
+            await insertUrlEntry(randomName, url, newUrl, true);
 
             req.payload = {
               shortenedUrl: newUrl,
@@ -71,7 +71,7 @@ export async function shortUrl(req: Request, res: Response, next: NextFunction) 
       }
 
       // check if long URL exists in DB
-      const checker = await getLongUrl(url);
+      const checker = await getLongUrl(url, false);
       if (checker) {
         req.payload = {
           shortenedUrl: checker.short,
@@ -87,7 +87,7 @@ export async function shortUrl(req: Request, res: Response, next: NextFunction) 
         const check = await getHashedUrl(hash.substring(first, last));
         if (!check) {
           const newHash = config.domain + hash.substring(first, last);
-          await insertUrlEntry(hash.substring(first, last), url, newHash);
+          await insertUrlEntry(hash.substring(first, last), url, newHash, false);
 
           req.payload = {
             shortenedUrl: newHash,

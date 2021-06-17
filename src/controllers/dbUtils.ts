@@ -13,11 +13,13 @@ export async function getUrl(): Promise<IUrl[]> {
 }
 
 export async function getLongUrl(
-  long: string
+  long: string,
+  readable: boolean
 ): Promise<IUrl | null> {
   try {
     const result = await Url.findOne({
-      long
+      long,
+      readable
     }).exec();
     return result;
   } catch (err) {
@@ -59,6 +61,7 @@ export async function insertUrlEntry(
   hash: string,
   long: string,
   short: string,
+  readable: boolean,
 ): Promise<IUrl> {
   try {
     const url = new Url({
@@ -66,6 +69,7 @@ export async function insertUrlEntry(
       hash,
       long,
       short,
+      readable,
     })
     return url.save();
   } catch (err) {
