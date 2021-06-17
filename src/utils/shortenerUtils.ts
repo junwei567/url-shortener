@@ -1,5 +1,6 @@
 import { createHash } from "crypto";
 import validURL from "valid-url";
+import { uniqueNamesGenerator, Config, adjectives, colors, animals } from 'unique-names-generator';
 
 export async function getHash(
   input: string,
@@ -11,4 +12,15 @@ export async function getHash(
   hash.update(input);
   const result = hash.digest("hex");
   return result;
+}
+
+
+const customConfig: Config = {
+  dictionaries: [adjectives, animals],
+  separator: "-",
+  length: 2,
+};
+
+export function getReadableName():string {
+  return uniqueNamesGenerator(customConfig);
 }

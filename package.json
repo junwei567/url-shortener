@@ -20,6 +20,7 @@
     "moment": "^2.29.1",
     "mongoose": "^5.12.13",
     "sanitize-html": "^2.4.0",
+    "unique-names-generator": "^4.5.0",
     "valid-url": "^1.0.9",
     "validator": "^13.6.0"
   },

@@ -9,7 +9,6 @@ import redirect from "./controllers/redirect";
 const app = express();
 const PORT = config.port;
 
-// const mongo = process.env.MONGO_URL;
 mongoose
   .connect(config.mongo.url, config.mongo.options)
   .then(() => {
