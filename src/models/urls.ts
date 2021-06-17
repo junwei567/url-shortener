@@ -12,4 +12,4 @@ const UrlSchema: Schema = new Schema(
   }
 );
 
-export default mongoose.model<IUrl>("Url", UrlSchema);
+export default mongoose.model<IUrl>("url", UrlSchema);

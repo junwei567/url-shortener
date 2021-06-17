@@ -17,7 +17,7 @@ export async function getLongUrl(
 ): Promise<IUrl | null> {
   try {
     const result = await Url.findOne({
-      long: long
+      long
     }).exec();
     return result;
   } catch (err) {
@@ -31,7 +31,7 @@ export async function getHashedUrl(
 ): Promise<IUrl | null> {
   try {
     const result = await Url.findOne({
-      hash: hash
+      hash
     }).exec();
     return result;
   } catch (err) {
@@ -45,7 +45,7 @@ export async function retrieveUrlFromHash(
 ): Promise<string | undefined> {
   try {
     const result = await Url.findOne({
-      hash: hash
+      hash
     }).exec();
     if (result) return result.long;
     else return undefined;
@@ -63,9 +63,9 @@ export async function insertUrlEntry(
   try {
     const url = new Url({
       _id: new mongoose.Types.ObjectId(),
-      hash: hash,
-      long: long,
-      short: short,
+      hash,
+      long,
+      short,
     })
     return url.save();
   } catch (err) {
