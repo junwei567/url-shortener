@@ -39,7 +39,6 @@ export function getReadableName():string {
 export async function shortUrl(req: Request, res: Response, next: NextFunction) {
   try {
     const url = sanitizeHtml(req.body.url);
-
     if (checkHttp(url) === true) {
 
       if (req.body.readableUrl) {
