@@ -19,7 +19,7 @@ const MONGO = {
 
 const config = {
   mongo: MONGO,
-  port: process.env.domain || 3000,
+  port: process.env.PORT || 3000,
   domain: process.env.domain || "http://localhost:3000/",
 }
 
