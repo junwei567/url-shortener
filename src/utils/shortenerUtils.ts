@@ -7,7 +7,7 @@ import { uniqueNamesGenerator, Config, adjectives, animals } from 'unique-names-
 import config from "../config";
 import { getLongUrl, insertUrlEntry, getHashedUrl } from "../controllers/dbUtils";
 
-function checkHttp(
+export function checkHttp(
   url: string
 ):boolean {
   if (!validURL.isHttpUri(url) && !validURL.isHttpsUri(url)) {
@@ -17,7 +17,7 @@ function checkHttp(
   }
 }
 
-async function getHash(
+export async function getHash(
   input: string,
 ): Promise<string> {
   const hash = createHash("sha512");
