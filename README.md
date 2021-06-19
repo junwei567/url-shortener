@@ -5,6 +5,7 @@ Jun Wei's URL Shortener
 ## Getting Started
 
 Try it out on https://kippy.herokuapp.com/
+
 Do note that the app is on the free plan so that app will be sleeping when the any does not receive any traffic for 1 hour.
 Just give it a moment for the app to wake up.
 
